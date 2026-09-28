@@ -1,0 +1,44 @@
+# Skill: Cloud Attack Monitor
+
+> A Grok skill for cloud safety watch: sim data or monitoring numbers you already have, then a status or red light.
+
+## Purpose
+Explain the monitor as a watch light. It does not break into a cloud. You bring the numbers. Source: fitzyracing1/skill-cloud-attack-monitor.
+
+## How it works (plain English)
+1. Take sim data or output from tools you already run.
+2. Score the status.
+3. Raise a red light if the score is high.
+4. Write a short safety note.
+
+## Key ideas
+- Provided data (you supply CloudWatch, GuardDuty, WAF, or SIEM output)
+- Red light (a simple flag)
+- Sim path (a practice run when no live feed exists)
+
+## The actual code
+```
+# source: fitzyracing1/skill-cloud-attack-monitor
+data = ingest(sim_or_provided)
+status = score(data)
+red_light = status_high(status)
+```
+
+## Line-by-line translation
+1. ingest(...) → “take the numbers you already have”
+2. score(data) → “turn them into a status”
+3. red_light = ... → “flag if high”
+
+## Decisions the program makes
+- If no data → run the sim path
+- If status is high → red light
+- If status is low → stay quiet
+
+## What a person would notice
+A watch light, not a how-to for attacks.
+
+## Current status
+Barrage clone.
+
+## Next possible steps
+Open the HTML skill and drop in one status check.
